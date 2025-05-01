@@ -1,103 +1,138 @@
-import Image from "next/image";
+"use client"
+import React,{useState,useEffect} from 'react';
+import SplitText from './Components/Engine/SplitText';
+import BlurText from './Components/Engine/BlurText';
+import {motion} from 'framer-motion'
+import { LiaStarOfLifeSolid } from "react-icons/lia";
+import { RiGeminiFill } from "react-icons/ri";
+import Services from './Components/LandingUtilities/Services';
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [animationStarted, setAnimationStarted] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+    setAnimationStarted(true);
+  }, []);
+
+  return (
+    <div>
+    <div className='relative h-full w-full'>
+    <div className="w-full min-h-full bg-white text-black flex items-center justify-center px-4 sm:px-6 lg:px-8 max-w-full mx-auto overflow-hidden">
+
+        <div className="absolute inset-0 z-5 opacity-30  w-full h-full hidden xl:inline">
+        {/* <Spline scene="https://prod.spline.design/itEFfCSFLDr2cYgG/scene.splinecode" /> */}
+      </div>
+
+         <div className="absolute left-[-100px] top-1/2 -translate-y-1/2 rotate-[-90deg] lg:flex items-center gap-4 text-sm text-black sea hidden ">
+        <hr className="w-20 border-black" />
+        <h1 className="tracking-widest uppercase sea">MERN Stack Developer</h1>
+        <hr className="w-20 border-black" />
+      </div>
+
+      <div className="max-w-7xl w-full flex flex-col lg:flex-row items-center justify-between relative z-20">
+        {/* Left Content */}
+        <div className="w-full lg:w-1/2 flex flex-col gap-10">
+
+          {/* Stats */}
+          <div className="flex gap-10 text-center text-gray-700 sea">
+            <div>
+              <div className="text-3xl font-semibold">+200</div>
+              <div className="text-sm">Project completed</div>
+            </div>
+            <div>
+              <div className="text-3xl font-semibold">+50</div>
+              <div className="text-sm">Startup raised</div>
+            </div>
+          </div>
+
+          {/* Intro Text */}
+          <div className="mt-12 text-start">
+            <div className="mb-4 sm:mb-6">
+              <SplitText text="A creative" className="text-[2.5rem] sm:text-[4rem] md:text-[5rem] font-light text-black leading-tight " delay={150} animationFrom={{ opacity: 0, transform: 'translate3d(0,50px,0)' }} animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }} easing="easeOutCubic" threshold={0.2} rootMargin="-50px" />
+            </div>
+            <div className="mb-4 sm:mb-6">
+              <SplitText text="developer &" className="text-[2.5rem] sm:text-[4rem] md:text-[4rem] font-light text-[#b5ff6d] leading-tight " delay={150} animationFrom={{ opacity: 0, transform: 'translate3d(0,50px,0)' }} animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }} easing="easeOutCubic" threshold={0.2} rootMargin="-50px" />
+            </div>
+            <div className='flex items-center justify-start'>
+              <div>
+                <SplitText text="digital" className="text-[2.5rem] sm:text-[4rem] md:text-[4rem] font-light text-black leading-tight " delay={150} animationFrom={{ opacity: 0, transform: 'translate3d(0,50px,0)' }} animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }} easing="easeOutCubic" threshold={0.2} rootMargin="-50px" />
+              </div>
+              <div>
+                <SplitText text="designer" className="text-[2.5rem] sm:text-[4rem] md:text-[4rem] font-light text-[#b5ff6d] leading-tight " delay={150} animationFrom={{ opacity: 0, transform: 'translate3d(0,50px,0)' }} animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }} easing="easeOutCubic" threshold={0.2} rootMargin="-50px" />
+              </div>
+            </div>
+            <BlurText text="— It’s NIDINBOSE A MERN STACK DEVELOPER" delay={150} animateBy="words" direction="top" className="text-gray-600 text-sm sm:text-base md:text-lg mt-4" />
+          </div>
+
+          {/* Button */}
+          <div>
+            <button className="relative bg-white text-black text-base font-bold px-6 py-3 rounded-lg overflow-hidden sea group">
+              <span className="z-10 relative">Know me better</span>
+              <span className="absolute w-16 h-16 bg-[#b5ff6d] rounded-full blur-lg right-2 top-1 z-0 transition-all duration-500 group-hover:right-10 group-hover:top-3"></span>
+              <span className="absolute w-24 h-24 bg-[#b5ff6d] rounded-full blur-lg right-8 top-3 z-0 transition-all duration-500 group-hover:right-14"></span>
+            </button>
+          </div>
+
+          {/* Scroll */}
+          <div className="text-sm text-black mt-8 animate-bounce sea">Scroll down ↓</div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        {/* Right Image */}
+        <div className="w-full lg:w-1/3 xl:w-1/2 flex justify-center mt-10 lg:mt-0 mb-12">
+      <motion.img
+        src="./Images/port.png"
+        alt="Profile"
+        initial={{ opacity: 0, x: -100, rotate: -5 }}
+        animate={{ opacity: 1, x: 0, rotate: 0 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+        className="max-h-[80vh] w-auto grayscale rounded-xl object-cover animate-bannerWave"
+        
+      />
     </div>
-  );
-}
+        {/* Year Marker */}
+        <div className="absolute right-0 bottom-10 rotate-[-90deg] text-sm text-black sea hidden lg:block">
+          2025
+        </div>
+      </div>
+  
+    </div>
+    <div className="overflow-hidden whitespace-nowrap w-full bg-white py-4 sea">
+      <div
+        className={`flex ${animationStarted ? "animate-marquee" : ""} w-max`}
+      >
+        <div className="flex space-x-8">
+        <h1 className="text-5xl font-bold text-[#b5ff6d]">  <RiGeminiFill /></h1>
+        <h1 className="text-5xl font-bold">APPLICATION DEVELOPER</h1>
+        <h1 className="text-5xl font-bold text-[#b5ff6d]">  <RiGeminiFill /></h1>
+          <h1 className="text-5xl font-bold">WEBSITE DEVELOPER</h1>
+          <h1 className="text-5xl font-bold text-[#b5ff6d]">  <RiGeminiFill /></h1>
+          <h1 className="text-5xl font-bold">DESIGNER</h1>
+          <h1 className="text-5xl font-bold text-[#b5ff6d]">  <RiGeminiFill /></h1>
+          <h1 className="text-5xl font-bold">ANIMATOR</h1>
+          <h1 className="text-5xl font-bold text-[#b5ff6d]">  <RiGeminiFill /></h1>
+          <h1 className="text-5xl font-bold">COMMUNITY</h1>
+        </div>
+
+        {/* Duplicate block for infinite looping */}
+        <div className="flex space-x-8 ml-16">
+      
+        <h1 className="text-5xl font-bold text-[#b5ff6d]">  <RiGeminiFill /></h1>
+          <h1 className="text-5xl font-bold">WEBSITE DEVELOPER</h1>
+          <h1 className="text-5xl font-bold text-[#b5ff6d]">  <RiGeminiFill /></h1>
+          <h1 className="text-5xl font-bold">APPLICATION DEVELOPER</h1>
+          <h1 className="text-5xl font-bold text-[#b5ff6d]">  <RiGeminiFill /></h1>
+          <h1 className="text-5xl font-bold">DESIGNER</h1>
+          <h1 className="text-5xl font-bold text-[#b5ff6d]">  <RiGeminiFill /></h1>
+          <h1 className="text-5xl font-bold">ANIMATOR</h1>
+          <h1 className="text-5xl font-bold text-[#b5ff6d]">  <RiGeminiFill /></h1>
+          <h1 className="text-5xl font-bold">COMMUNITY</h1>
+          
+        </div>
+      </div>
+    </div>
+  
+    </div>
+    <Services/>
+    </div>
+    
+);}
