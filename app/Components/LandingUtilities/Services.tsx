@@ -1,97 +1,113 @@
-import React, { useEffect, useState } from "react";
-import SplitText from "../Engine/SplitText";
-import BlurText from "../Engine/BlurText";
+'use client'; // If using Next.js 13+ app directory
+
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { HiOutlineArrowSmallRight } from "react-icons/hi2";
 import { RiGeminiFill } from "react-icons/ri";
 
-const arr = [
-  { id: 1, text: "hello" },
-  { id: 2, text: "Clients worldwide" },
-  { id: 3, text: "hello" },
-  { id: 4, text: "hello" },
+interface Service {
+  service: string;
+  img: string;
+}
+
+const arr: Service[] = [
+  {
+    service: "Website Development",
+    img: "https://erepublic.brightspotcdn.com/dims4/default/d5f1ca5/2147483647/strip/false/crop/940x627+0+0/resize/940x627!/quality/90/?url=http%3A%2F%2Ferepublic-brightspot.s3.us-west-2.amazonaws.com%2Fe6%2F75%2Fd935c402851254764ef700039a55%2Fshutterstock-592315250.jpg"
+  },
+  {
+    service: "Application Development",
+    img: "https://cbx-prod.b-cdn.net/COLOURBOX38115547.jpg?width=800&height=800&quality=70"
+  },
+  {
+    service: "UI/UX Designing",
+    img: "https://miro.medium.com/v2/resize:fit:1400/0*0KTNLqYj4p8C_skP"
+  },
+  {
+    service: "Graphic Designing",
+    img: "https://cbx-prod.b-cdn.net/COLOURBOX30772913.jpg?width=800&height=800&quality=70"
+  }
 ];
 
-const skill=[
-  {img:"https://cdn.worldvectorlogo.com/logos/mongodb-icon-2.svg",text:"Mongodb"},
-  {img:"https://adware-technologies.s3.amazonaws.com/uploads/technology/thumbnail/20/express-js.png",text:"Express"},
-  {img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png",text:"React"},
-  {img:"https://cdn.prod.website-files.com/6449405754e757db07f25327/665642ccf15387c17b7ddee2_node.webp",text:"Node.js"},
-  {img:"https://ellipsiseducation.com/wp-content/uploads/2023/02/javascript-736400_1280.png",text:"JavaScript"},
-  {img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStVklzfGsO-6hPFSuutVa0ingPtO5KZgg2vA-irnqZosRmpp4HHc12Ir-taFq3oO4ujPo&usqp=CAU",text:"TailwindCss"},
-  {img:"https://e7.pngegg.com/pngimages/439/345/png-clipart-bootstrap-logo-thumbnail-tech-companies-thumbnail.png",text:"Bootstrap"},
-  {img:"https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/97_Docker_logo_logos-512.png",text:"Docker"},
-  {img:"https://juststickers.in/wp-content/uploads/2018/11/kubernetes-wordmark.png",text:"Kubernetes"},
-  {img:"https://images.seeklogo.com/logo-png/31/2/amazon-web-services-aws-logo-png_seeklogo-319188.png",text:"AWS"}
-
-]
-export default function Services(){
-  const [activeIndex, setActiveIndex] = useState(0);
-
+export default function Services(): JSX.Element {
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % arr.length);
-    }, 2000);
-
-    return () => clearInterval(interval);
+    AOS.init({ once: true, duration: 1000 });
   }, []);
-    return(
-      <div className="container mx-auto mt-12 mb-12 px-4 sm:px-6 md:px-12 max-w-7xl">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 sea mb-[15vh]">
-        {arr.map((item, index) => (
-          <div>
 
-          <div
-            key={index}
-            className={`w-full max-w-xs md:h-80 border shadow-xs rounded-3xl px-6 py-10 mx-auto transform transition duration-500 flex flex-col items-center justify-center
-              ${activeIndex === index ? "bg-black text-white rotate-[13deg]" : "bg-white text-black md:rotate-[13deg]"}`}
-          >
-            <h1 className="text-center text-5xl sm:text-6xl font-bold text-[#b5ff6d]">
-              {item.id}+
-            </h1>
-            <h2 className="text-xl sm:text-2xl text-center mt-4 sea">{item.text}</h2>
-          </div>
-          </div>
-        ))}
+  const directions = ['fade-left', 'fade-right', 'fade-up', 'fade-down'];
+
+  return (
+    <div className="min-h-full flex flex-col items-center justify-start pt-16 px-4 md:px-8 lg:px-16">
+      {/* Header Text */}
+      <h1 data-aos="fade-down" className="text-5xl sm:text-7xl md:text-[80px] lg:text-[120px] xl:text-[150px] font-bold text-black text-center tracking-tight leading-none sea">
+        SERVICES
+      </h1>
+      <h1 data-aos="fade-up" className="text-5xl sm:text-7xl md:text-[80px] lg:text-[120px] xl:text-[150px] font-bold text-[#b5ff6d] text-center tracking-tight mt-6 leading-none sea opacity-20">
+        SERVICES
+      </h1>
+
+      {/* Services Card */}
+      <div data-aos="fade-up" className="relative w-full bg-white/60 rounded-3xl p-6 sm:p-8 md:p-12 mt-[-6px] shadow-xl z-20 mt-10">
+        
+        {/* Service Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 mb-10">
+          {arr.map((service, index) => {
+            const aosDir = directions[index % directions.length];
+
+            return (
+              <div
+                key={index}
+                data-aos={aosDir}
+                data-aos-delay={index * 100}
+                className="flex items-center justify-between px-4 py-4 border rounded-4xl bg-black text-white transition duration-300 h-96 relative"
+              >
+                <h1 className="text-2xl md:text-3xl font-bold text-[#b5ff6d] absolute top-4">
+                  <RiGeminiFill />
+                </h1>
+                <h2 className="ml-3 flex-1 text-xs sm:text-sm md:text-base font-light tracking-wide absolute top-4 sea left-12">
+                  {service.service}
+                </h2>
+                <img
+                  src={service.img}
+                  alt={`${service.service} image`}
+                  className="bg-cover rounded-xl h-auto md:h-55 lg:h-65 w-auto mx-auto"
+                />
+                <button className="group rounded-full border p-2 sm:p-3 md:p-4 absolute bottom-2 right-4">
+                  <HiOutlineArrowSmallRight className="text-[#b5ff6d] text-xl md:text-2xl rotate-[-14deg] group-hover:rotate-[1deg] transition-transform duration-300 ease-in-out" />
+                </button>
+              </div>
+            );
+          })}
+        </div>
+
+        <p data-aos="fade-up" className="text-center text-sm sm:text-base md:text-lg font-semibold text-gray-800 leading-relaxed mb-12 mt-12">
+          Collaborate With Brands And Agencies <br className="hidden sm:block" />
+          To Create Impactful Results
+        </p>
+
+        {/* Bottom Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-10">
+          {["Imagination", "Creativity", "Designe", "Development"].map((service, index) => (
+            <div
+              key={index}
+              data-aos="fade-left"
+              data-aos-delay={index * 100}
+              className="flex items-center justify-between px-4 py-3 sm:py-4 border rounded-full bg-black text-white transition duration-300"
+            >
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#b5ff6d]">
+                <RiGeminiFill />
+              </h1>
+              <h2 className="ml-3 flex-1 text-xs sm:text-sm md:text-base font-light tracking-wide text-center sea">
+                {service}
+              </h2>
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#b5ff6d]">
+                <RiGeminiFill />
+              </h1>
+            </div>
+          ))}
+        </div>
       </div>
-   
-  
-   <SplitText text="Skillsets" className="text-5xl sea mb-12 text-black " delay={150} animationFrom={{ opacity: 0, transform: 'translate3d(0,50px,0)' }} animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }} easing="easeOutCubic" threshold={0.2} rootMargin="-50px" />
-   
-   <div className="flex items-start justify-end mt-7">
-   <SplitText
-  text="Proficient in MERN Stack for building full-stack web applications. Skilled in creating responsive ui with react designing restful APIs with express js and managing data using "
-  delay={20}
-  animationFrom={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
-  animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
-  easing="easeOutCubic"
-  threshold={0.2}
-  rootMargin="-50px"
-  className="text-xs max-w-xl text-start"
-/>
-
-   </div>
-
- 
-   
-
-      <div className="scroll-container h-16 sm:h-20 mt-12">
-  <div className="scroll-content gap-4">
-    {[...skill, ...skill].map((item, index) => (
-      <div
-        className="group shadow-md rounded-full flex items-center justify-center gap-4 px-3 py-1 sm:px-4 sm:py-2 w-auto flex-shrink-0 text-xs sm:text-sm hover:bg-black"
-        key={index}
-      >
-        <img src={item.img} alt="" className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-cover" />
-        <h1 className="sea ml-2 truncate text-center group-hover:text-[#b5ff6d]">
-          {item.text}
-        </h1>
-      </div>
-    ))}
-  </div>
-</div>
-
-<div className="text-sm text-black mt-8 animate-bounce sea text-end">Scroll down ↓</div>
-
-
     </div>
-    )
+  );
 }

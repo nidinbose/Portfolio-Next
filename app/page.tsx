@@ -5,6 +5,7 @@ import BlurText from './Components/Engine/BlurText';
 import {motion} from 'framer-motion'
 import { LiaStarOfLifeSolid } from "react-icons/lia";
 import { RiGeminiFill } from "react-icons/ri";
+import Skills from './Components/LandingUtilities/Skills';
 import Services from './Components/LandingUtilities/Services';
 
 export default function Home() {
@@ -132,6 +133,7 @@ export default function Home() {
     </div>
   
     </div>
+    <Skills/>
     <Services/>
     </div>
     
